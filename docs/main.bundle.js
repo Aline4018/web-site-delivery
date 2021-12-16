@@ -55,6 +55,16 @@ AboutComponent = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/app.api.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MEAT_API; });
+var MEAT_API = 'http://localhost:3000';
+//# sourceMappingURL=app.api.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
@@ -113,6 +123,7 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__about_about_component__ = __webpack_require__("../../../../../src/app/about/about.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__restaurants_restaurants_component__ = __webpack_require__("../../../../../src/app/restaurants/restaurants.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__restaurants_restaurant_restaurant_component__ = __webpack_require__("../../../../../src/app/restaurants/restaurant/restaurant.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__restaurants_restaurants_service__ = __webpack_require__("../../../../../src/app/restaurants/restaurants.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -120,6 +131,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -151,7 +163,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* RouterModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_routes__["a" /* ROUTES */])
         ],
-        providers: [],
+        providers: [__WEBPACK_IMPORTED_MODULE_11__restaurants_restaurants_service__["a" /* RestaurantsService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -281,7 +293,7 @@ HomeComponent = __decorate([
 /***/ "../../../../../src/app/restaurants/restaurant/restaurant.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<a href=\"#\">\n  <div class=\"place-info-box\">\n    <span class=\"place-info-box-icon\"><img [src]=restaurant.imagePath/></span>\n\n    <div class=\"place-info-box-content\">\n      <span class=\"place-info-box-text\">{{restaurant.name}}</span>\n      <span class=\"place-info-box-star\"><i class=\"fa fa-star\"></i>{{restaurant.rating}}</span>\n      <span class=\"place-info-box-detail\">{{restaurant.category}}</span>\n      <span class=\"place-info-box-detail\">{{restaurant.deliveryEstimate}}</span>\n    </div>\n    <!-- /.info-box-content -->\n  </div>\n</a>\n"
+module.exports = "]<a href=\"#\">\n  <div class=\"place-info-box\">\n    <span class=\"place-info-box-icon\"><img [src]=restaurant.imagePath/></span>\n\n    <div class=\"place-info-box-content\">\n      <span class=\"place-info-box-text\">{{restaurant.name}}</span>\n      <span class=\"place-info-box-star\"><i class=\"fa fa-star\"></i>{{restaurant.rating}}</span>\n      <span class=\"place-info-box-detail\">{{restaurant.category}}</span>\n      <span class=\"place-info-box-detail\">{{restaurant.deliveryEstimate}}</span>\n    </div>\n    <!-- /.info-box-content -->\n  </div>\n</a>\n"
 
 /***/ }),
 
@@ -312,7 +324,7 @@ var RestaurantComponent = (function () {
     return RestaurantComponent;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Input */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* Input */])(),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__restaurant_model__["Restaurant"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__restaurant_model__["Restaurant"]) === "function" && _a || Object)
 ], RestaurantComponent.prototype, "restaurant", void 0);
 RestaurantComponent = __decorate([
@@ -347,6 +359,7 @@ module.exports = "<!-- INíCIO do CONTEÚDO -->\n    <section class=\"content-he
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__restaurants_service__ = __webpack_require__("../../../../../src/app/restaurants/restaurants.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RestaurantsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -358,28 +371,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var RestaurantsComponent = (function () {
-    function RestaurantsComponent() {
-        this.restaurants = [
-            {
-                id: "bread-bakery",
-                name: "Bread & Bakery",
-                category: "Bakery",
-                deliveryEstimate: "25m",
-                rating: 4.9,
-                imagePath: "assets/img/restaurants/breadbakery.png"
-            },
-            {
-                id: "burger-house",
-                name: "Burger House",
-                category: "Hamburgers",
-                deliveryEstimate: "100m",
-                rating: 3.5,
-                imagePath: "assets/img/restaurants/burgerhouse.png"
-            }
-        ];
+    function RestaurantsComponent(restaurantsService) {
+        this.restaurantsService = restaurantsService;
     }
     RestaurantsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.restaurantsService.restaurants()
+            .subscribe(function (restaurants) { _this.restaurants = restaurants; console.log(_this.restaurants); });
     };
     return RestaurantsComponent;
 }());
@@ -388,10 +388,54 @@ RestaurantsComponent = __decorate([
         selector: 'mt-restaurants',
         template: __webpack_require__("../../../../../src/app/restaurants/restaurants.component.html"),
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__restaurants_service__["a" /* RestaurantsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__restaurants_service__["a" /* RestaurantsService */]) === "function" && _a || Object])
 ], RestaurantsComponent);
 
+var _a;
 //# sourceMappingURL=restaurants.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/restaurants/restaurants.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_api__ = __webpack_require__("../../../../../src/app/app.api.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RestaurantsService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var RestaurantsService = (function () {
+    function RestaurantsService(http) {
+        this.http = http;
+    }
+    RestaurantsService.prototype.restaurants = function () {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__app_api__["a" /* MEAT_API */] + "/restaurants")
+            .map(function (response) { return response.json(); });
+    };
+    return RestaurantsService;
+}());
+RestaurantsService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], RestaurantsService);
+
+var _a;
+//# sourceMappingURL=restaurants.service.js.map
 
 /***/ }),
 
