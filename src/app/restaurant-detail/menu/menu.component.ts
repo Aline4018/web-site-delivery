@@ -1,7 +1,9 @@
 import { Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {RestaurantsService} from '../../restaurants/restaurants.service';
+import {ActivatedRoute} from '@angular/router';
+import {MenuItem} from '../menu-item/menu-item.model';
 
-import {Menu} from './menu.model';
-import {MenuService} from './menu.service';
 
 
 @Component({
@@ -10,11 +12,11 @@ import {MenuService} from './menu.service';
 })
 export class MenuComponent
 implements OnInit {
-  menus: Menu[];
-  constructor( private menuService: MenuService) { }
+  menu: Observable<MenuItem[]>
+  constructor( private restaurantsService: RestaurantsService,
+               private route: ActivatedRoute) { }
   ngOnInit() {
-    this.menuService.menu()
-      .subscribe(menus => {this.menus = menus; console.log(menus);});
+    this.menu = this.restaurantsService.menuOfRestaurant(this.route.parent.snapshot.params['id']);
   }
 
 }
